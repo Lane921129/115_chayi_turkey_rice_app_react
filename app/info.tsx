@@ -106,8 +106,10 @@ export default function InfoScreen() {
   };
 
   const openMap = (address: string) => {
-    const url = `http://googleusercontent.com/maps.google.com/3{encodeURIComponent(address)}`;
-    Linking.openURL(url).catch(() => Alert.alert("錯誤", "無法開啟地圖"));
+    // 1. 使用標準的 Google Maps 搜尋網址
+    // 2. 確保大括號前面有 $ 符號： ${...}
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    Linking.openURL(url).catch(() => Alert.alert('錯誤', '無法開啟地圖'));
   };
 
   const currentImages = selectedRestaurant
